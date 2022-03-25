@@ -6,7 +6,7 @@ export const fetchMentors = createAsyncThunk("mentors/fetchMentors", () => {
     .then((response) => response.json())
     // then(setHabits);
     // then((data) => data.images)
-    .then(console.log());
+    .then((data) => data);
 })
 
 const mentorsSlice = createSlice({
