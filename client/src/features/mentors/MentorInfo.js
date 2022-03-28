@@ -1,12 +1,23 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
-function MentorInfo(){
+//redux attempt:
+// import {fetchMentorId} from "./mentorsSlice";
+
+function MentorInfo({mentorData}){
+    const history = useHistory()
+
+    function handleBackButton(){
+        history.push(`/`)
+    }
 
     return(
         <div>
-            mentor info here
+            <p>{mentorData.first_name}</p>
         </div>
-    )
+    );
 }
 
 export default MentorInfo;

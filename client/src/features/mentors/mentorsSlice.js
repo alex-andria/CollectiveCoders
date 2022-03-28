@@ -1,7 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
-export const fetchMentors = createAsyncThunk("mentors/fetchMentors", () => {
-    //return a Promis containing the data we want
+export const fetchMentors = createAsyncThunk("mentors/fetchMentors", async () => {
+    //return a Promise containing the data we want
     return fetch("http://localhost:3000/mentors")
     .then((response) => response.json())
     // then(setHabits);
@@ -9,10 +9,17 @@ export const fetchMentors = createAsyncThunk("mentors/fetchMentors", () => {
     .then((data) => data);
 })
 
+export const fetchMentorId = createAsyncThunk("mentors/fetchMentorId", async (mentorId) => {
+    //return a Promise containing the data we want
+    return fetch(`http://localhost:3000/mentors/${mentorId}`)
+        .then((response) => response.json())
+});
+
 const mentorsSlice = createSlice({
     name: "mentors",
     initialState: {
         entities: [], //array of mentors
+        mentorData: {},
         status: "idle", //loading state
     },
 
@@ -34,6 +41,13 @@ const mentorsSlice = createSlice({
         },
         [fetchMentors.fulfilled](state, action) {
             state.entities = action.payload;
+            state.status = "idle";
+        },
+        [fetchMentorId.pending](state){
+            state.status = "loading"
+        },
+        [fetchMentorId.fulfilled](state, action){
+            state.mentorData = action.payload;
             state.status = "idle";
         },
     },

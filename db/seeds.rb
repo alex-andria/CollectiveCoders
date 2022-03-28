@@ -20,7 +20,16 @@ mentor4 = Mentor.create(first_name: 'Neelesh', last_name: "Bollu", email_address
     github_link: "null", linkedin_link: "null", skills: "null", hearts: "0");
 
 #project seed data
- 
+project1 = Project.create(title: "Weather App", description: "An application to relay the weather forecast for the week.", 
+    skills:"null")
+
+project2 = Project.create(title: "CatBook", description: "An social media app for cats. Owners can befriend other cat owners and
+    organize play dates for their kitties.", skills:"null")
+
+project3 = Project.create(title: "E-Commerce App", description: "An online store for books to be bidded on, traded, and sold.", 
+    skills:"null")
+
+
 # mentee seed data
 mentee1 = Mentee.create(first_name: 'Alex', last_name: "Dantonio", email_address: "alex@yahoo.com", password_digest: "123",
     github_link: "null", linkedin_link: "null", skills: "null", hearts: "0");
