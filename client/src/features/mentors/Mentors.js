@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
+// import { useSelector, useDispatch } from "react-redux";
 import MentorList from "./MentorList";
-import { fetchMentors } from "./mentorsSlice";
+// import { fetchMentors } from "./mentorsSlice";
 
-function Mentors({setMentorData}) {
+function Mentors({mentors, setMentorData}) {
 
   //redux attempt:
   // const mentors = useSelector((state) => state.mentors.entities);
@@ -14,14 +13,6 @@ function Mentors({setMentorData}) {
   // useEffect(() => {
   //   dispatch(fetchMentors());
   // }, [dispatch]);
-
-  const [mentors, setMentors] = useState([]);
-  
-  useEffect(() => {
-    fetch("/mentors")
-      .then((r) => r.json())
-      .then(setMentors);
-  }, []);
 
   return (
     <div className="App">

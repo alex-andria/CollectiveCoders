@@ -19,6 +19,9 @@ mentor3 = Mentor.create(first_name: 'Saloni', last_name: "Gupta", email_address:
 mentor4 = Mentor.create(first_name: 'Neelesh', last_name: "Bollu", email_address: "neelesh@yahoo.com", password_digest: "123",
     github_link: "null", linkedin_link: "null", skills: "null", hearts: "0");
 
+mentor5 = Mentor.create(first_name: 'Nidhi', last_name: "Nadig", email_address: "nidhi@yahoo.com", password_digest: "123",
+    github_link: "null", linkedin_link: "null", skills: "null", hearts: "0");
+
 #project seed data
 project1 = Project.create(title: "Weather App", description: "An application to relay the weather forecast for the week.", 
     skills:"null")
