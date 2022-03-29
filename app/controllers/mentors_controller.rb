@@ -5,8 +5,7 @@ class MentorsController < ApplicationController
     end
 
     def show
-        mentor = Mentor.find(params[:id])
-        render json: mentor
+        render json: find_mentor
     end
 
     private
