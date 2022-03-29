@@ -1,19 +1,18 @@
-# class MenteesController < ApplicationController
+class MenteesController < ApplicationController
 
-#     def index
-#         render json: Mentee.all
-#     end
+    def index
+        render json: Mentee.all
+    end
 
-#     def show
-#         mentee = Mentee.find(params[:id])
-#         render json: mentee
-#     end
+    def show
+        render json: find_mentee
+    end
 
-#     private
+    private
 
-#     def find_mentee
-#         Mentee.find(params[:id])
-#     end
+    def find_mentee
+        Mentee.find(params[:id])
+    end
 
 
-# end
+end

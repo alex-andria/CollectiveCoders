@@ -34,16 +34,16 @@ project3 = Project.create(title: "E-Commerce App", description: "An online store
 
 
 # mentee seed data
-mentee1 = Mentee.create(first_name: 'Alex', last_name: "Dantonio", email_address: "alex@yahoo.com", password_digest: "123",
+mentee1 = Mentee.create(first_name: 'Mentee1', last_name: "Dantonio", email_address: "Mentee1@yahoo.com", password_digest: "123",
     github_link: "null", linkedin_link: "null", skills: "null", hearts: "0");
     
-mentee2 = Mentee.create(first_name: 'Justin', last_name: "Juco", email_address: "justin@yahoo.com", password_digest: "123",
+mentee2 = Mentee.create(first_name: 'Mentee2', last_name: "Juco", email_address: "Mentee2@yahoo.com", password_digest: "123",
     github_link: "null", linkedin_link: "null", skills: "null", hearts: "0");
 
-mentee3 = Mentee.create(first_name: 'Saloni', last_name: "Gupta", email_address: "saloni@yahoo.com", password_digest: "123",
+mentee3 = Mentee.create(first_name: 'Mentee3', last_name: "Gupta", email_address: "Mentee3@yahoo.com", password_digest: "123",
     github_link: "null", linkedin_link: "null", skills: "null", hearts: "0");
 
-mentee4 = Mentee.create(first_name: 'Neelesh', last_name: "Bollu", email_address: "neelesh@yahoo.com", password_digest: "123",
+mentee4 = Mentee.create(first_name: 'Mentee4', last_name: "Bollu", email_address: "Mentee4@yahoo.com", password_digest: "123",
     github_link: "null", linkedin_link: "null", skills: "null", hearts: "0");
 
     
