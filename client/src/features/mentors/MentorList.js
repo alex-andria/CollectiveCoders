@@ -34,9 +34,9 @@ function MentorList({mentors, setMentorData}) {
                     <div className="card">
                         <div className="additional">
                         <div className="user-card">
-                            <div className="level center">
+                            {/* <div className="level center">
                             Level 13
-                            </div>
+                            </div> */}
                             <div className="points center">
                             5,312 Points
                             </div>
@@ -56,25 +56,25 @@ function MentorList({mentors, setMentorData}) {
                             </div>
                             <div className="stats">
                             <div>
-                                <div className="title">Awards</div>
+                                <div className="title">Hearts</div>
                                 <i className="fa fa-trophy"></i>
                                 <div className="value">2</div>
                             </div>
                             <div>
-                                <div className="title">Matches</div>
+                                <div className="title">Projects</div>
                                 <i className="fa fa-gamepad"></i>
                                 <div className="value">27</div>
                             </div>
                             <div>
-                                <div className="title">Pals</div>
+                                <div className="title">Reviews</div>
                                 <i className="fa fa-group"></i>
                                 <div className="value">123</div>
                             </div>
-                            <div>
+                            {/* <div>
                                 <div className="title">Coffee</div>
                                 <i className="fa fa-coffee"></i>
                                 <div className="value infinity">∞</div>
-                            </div>
+                            </div> */}
                             </div>
                         </div>
                         </div>

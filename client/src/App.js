@@ -8,10 +8,10 @@ import MentorInfo from './features/mentors/MentorInfo';
 
 function App() {
 
-  const [userMentor, setUserMentor] = useState(null);
-  const [userMentee, setUserMentee] = useState(null);
-  const [mentorData, setMentorData] = useState(null);
-  const [mentors, setMentors] = useState([]);
+  const [userMentor, setUserMentor] = useState(null); //user log-in mentor
+  const [userMentee, setUserMentee] = useState(null); //user log-in mentee
+  const [mentorData, setMentorData] = useState(null); //mentor individual data
+  const [mentors, setMentors] = useState([]);         //mentor list
   
   useEffect(() => {
     fetch("/mentors")
