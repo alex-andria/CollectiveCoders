@@ -1,3 +1,4 @@
+import React from "react";
 import MenteeList from "./MenteeList";
 
 function Mentees({mentees, setMenteeData}) {

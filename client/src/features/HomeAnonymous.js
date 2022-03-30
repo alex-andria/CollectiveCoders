@@ -5,7 +5,7 @@ function HomeAnonymous(){
 
     return(
         <div>
-            <h2>Homepage</h2>
+            <h1>Homepage</h1>
         </div>
     )
 }

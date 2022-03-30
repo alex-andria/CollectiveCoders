@@ -6,6 +6,9 @@ import Mentors from './features/mentors/Mentors';
 import Mentees from './features/mentees/Mentees';
 import MentorInfo from './features/mentors/MentorInfo';
 import MenteeInfo from './features/mentees/MenteeInfo';
+import Projects from './features/projects/Projects';
+import ProjectInfo from './features/projects/ProjectInfo';
+import MentorUserHome from './features/mentors/MentorUserHome';
 
 
 function App() {
@@ -16,6 +19,8 @@ function App() {
   const [mentors, setMentors] = useState([]);         //mentors list
   const [menteeData, setMenteeData] = useState(null); //mentee individual data
   const [mentees, setMentees] = useState([]);         //mentees list
+  const [projectData, setProjectData] = useState(null); //project individual data
+  const [projects, setProjects] = useState([]);         //projects list
   
   useEffect(() => {
     fetch("/mentors")
@@ -27,6 +32,12 @@ function App() {
     fetch("/mentees")
       .then((r) => r.json())
       .then(setMentees);
+  }, []);
+
+  useEffect(() => {
+    fetch("/projects")
+      .then((r) => r.json())
+      .then(setProjects);
   }, []);
 
   return (
@@ -52,9 +63,18 @@ function App() {
               <Mentees mentees={mentees} setMenteeData={setMenteeData}/>
             </Route>
 
+            {/* Project list & detail page */}
+            <Route exact path="/projects/:id">
+              <ProjectInfo projectData={projectData}/>
+            </Route>
+            <Route path="/projects">
+              < Projects projects={projects} setProjectData={setProjectData}/>
+            </Route>
+
             {/* homepage anonymous */}
             <Route exact path="/">
               <HomeAnonymous/>
+              <MentorUserHome/>
             </Route>
 
 
