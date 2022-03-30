@@ -46,5 +46,10 @@ mentee3 = Mentee.create(first_name: 'Mentee3', last_name: "Gupta", email_address
 mentee4 = Mentee.create(first_name: 'Mentee4', last_name: "Bollu", email_address: "Mentee4@yahoo.com", password_digest: "123",
     github_link: "null", linkedin_link: "null", skills: "null", hearts: "0");
 
+
+# mentor project join
+ex1 = MentorProject.create(mentor_id: mentor1.id, project_id: project1.id)
+ex2 = MentorProject.create(mentor_id: mentor1.id, project_id: project2.id)
+
     
 

@@ -11,11 +11,11 @@ function MenteeList({ mentees, setMenteeData }) {
         <div
           onClick={() => {
             const id = mentee.id;
-            fetch(`/mentees/${id}`)
+            fetch(`/mentees/all/${id}`)
               .then((res) => res.json())
               .then((data) => {
                 setMenteeData(data);
-                history.push(`/mentees/${id}`);
+                history.push(`/mentees/all/${id}`);
               });
           }}
           key={mentee.id}

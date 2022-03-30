@@ -48,7 +48,7 @@ function App() {
         <main>
           <Switch>
             {/* mentor list & detail page */}
-            <Route exact path="/mentors/:id">
+            <Route exact path="/mentors/all/:id">
               <MentorInfo mentorData={mentorData}/>
             </Route>
             <Route path="/mentors">
@@ -56,7 +56,7 @@ function App() {
             </Route>
 
             {/* mentee list & detail page */}
-            <Route exact path="/mentees/:id">
+            <Route exact path="/mentees/all/:id">
               <MenteeInfo menteeData={menteeData}/>
             </Route>
             <Route path="/mentees">

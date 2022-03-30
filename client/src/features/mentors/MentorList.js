@@ -22,11 +22,11 @@ function MentorList({mentors, setMentorData}) {
                     const id = mentor.id;
                     //redux attempt
                     // dispatch(fetchMentorId(mentorId));
-                    fetch(`/mentors/${id}`)
+                    fetch(`/mentors/all/${id}`)
                     .then((res) => res.json())
                     .then((data) => {
                         setMentorData(data);
-                        history.push(`/mentors/${id}`)
+                        history.push(`/mentors/all/${id}`)
                     });
                 }}
                 key={mentor.id} 

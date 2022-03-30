@@ -4,7 +4,7 @@ class MenteesController < ApplicationController
         render json: Mentee.all
     end
 
-    def show
+    def show_profile
         render json: find_mentee
     end
 
