@@ -2,7 +2,7 @@ import React from "react";
 import {useEffect, useState} from "react";
 import { useParams } from "react-router";
 
-function MentorUserHome(mentor){
+function MentorUserHome({mentorUser}){
     // const [{ data: mentor, error, status }, setMentor] = useState({
     //     data: null,
     //     error: null,
@@ -24,16 +24,16 @@ function MentorUserHome(mentor){
     //       }
     //     });
     //   }, [id]);
-    const [mentorUser, setMentorUser] = useState(null);
+    // const [mentorUserProjects, setMentorUserProjects] = useState(null);
     // const { id } = useParams();
 
-    let id = 51;
 
-    useEffect(() => {
-        fetch(`/mentors/projects/${id}`)
-        .then(response => response.json())
-        .then((data) => setMentorUser(data))
-        }, []);
+
+    // useEffect(() => {
+    //     fetch(`/mentors/projects/${mentorUser.id}`)
+    //     .then(response => response.json())
+    //     .then((data) => setMentorUserProjects(data))
+    //     }, []);
 
     console.log(mentorUser);
 
@@ -42,7 +42,7 @@ function MentorUserHome(mentor){
             <h1>Current Projects</h1>
             <div>
                 Horizontal Project Info Here. Plus create new project.
-                {mentorUser ?
+                {mentorUser.projects ?
                     <ul>
                     {mentorUser.projects.map((project) => (
                     <li key={project.id}>

@@ -1,4 +1,6 @@
 class ProjectsController < ApplicationController
+    # temporary
+    skip_before_action :authorize
 
     def index
         render json: Project.all

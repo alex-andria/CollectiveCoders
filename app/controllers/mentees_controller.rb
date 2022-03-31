@@ -1,5 +1,7 @@
 class MenteesController < ApplicationController
-
+    # temporary
+    skip_before_action :authorize
+    
     def index
         render json: Mentee.all
     end

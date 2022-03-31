@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {Switch, Route, Redirect } from 'react-router-dom';
 import { Navbar } from './app/Navbar';
 import HomeAnonymous from './features/HomeAnonymous';
+import LoginForm from './features/LoginForm';
+import SignupForm from './features/SignupForm';
 import Mentors from './features/mentors/Mentors';
 import Mentees from './features/mentees/Mentees';
 import MentorInfo from './features/mentors/MentorInfo';
@@ -21,7 +23,21 @@ function App() {
   const [mentees, setMentees] = useState([]);         //mentees list
   const [projectData, setProjectData] = useState(null); //project individual data
   const [projects, setProjects] = useState([]);         //projects list
-  
+
+  // user auth
+  const [mentorUser, setMentorUser] = useState(null);
+
+  useEffect(() => {
+    //auto-login
+    fetch("/mentor/me")
+    .then((response) => {
+      if (response.ok) {
+        response.json()
+        .then((mentorUser) => setMentorUser(mentorUser));
+      }
+    });
+  }, []);
+
   useEffect(() => {
     fetch("/mentors")
       .then((r) => r.json())
@@ -40,18 +56,21 @@ function App() {
       .then(setProjects);
   }, []);
 
+  if (!mentorUser) return <HomeAnonymous onLogin={setMentorUser} />;
+  
   return (
     <>
-      <Navbar />
+      <Navbar setMentorUser={setMentorUser}/>
       <div className='App'>
 
         <main>
           <Switch>
+
             {/* mentor list & detail page */}
             <Route exact path="/mentors/all/:id">
               <MentorInfo mentorData={mentorData}/>
             </Route>
-            <Route path="/mentors">
+            <Route exact path="/mentors">
               <Mentors mentors={mentors} setMentorData={setMentorData}/>
             </Route>
 
@@ -59,7 +78,7 @@ function App() {
             <Route exact path="/mentees/all/:id">
               <MenteeInfo menteeData={menteeData}/>
             </Route>
-            <Route path="/mentees">
+            <Route exact path="/mentees">
               <Mentees mentees={mentees} setMenteeData={setMenteeData}/>
             </Route>
 
@@ -67,16 +86,15 @@ function App() {
             <Route exact path="/projects/:id">
               <ProjectInfo projectData={projectData}/>
             </Route>
-            <Route path="/projects">
+            <Route exact path="/projects">
               < Projects projects={projects} setProjectData={setProjectData}/>
             </Route>
 
-            {/* homepage anonymous */}
+            {/* homepage user */}
             <Route exact path="/">
-              <HomeAnonymous/>
-              <MentorUserHome/>
+              <MentorUserHome mentorUser={mentorUser}/>
             </Route>
-
+            
 
             <Redirect to="/" />
 

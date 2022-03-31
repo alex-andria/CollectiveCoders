@@ -1,7 +1,18 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-export const Navbar = () => {
+export const Navbar = ({setMentorUser}) => {
+
+    function handleLogOut(){
+        fetch("/logout",
+        {method: "DELETE"})
+        .then((response) => {
+            if (response.ok) {
+                setMentorUser(null);
+            }
+        });
+    }
+
     return (
         <nav>
             <section>
@@ -13,7 +24,7 @@ export const Navbar = () => {
                         <Link to="/mentors">Mentors</Link>
                         <Link to="/projects">Projects</Link>
                         <Link to="/mentees">Mentees</Link>
-                        <Link to="/">Logout</Link>
+                        <Link to="/" onClick={handleLogOut}>Logout</Link>
                     </div>
                 </div>
             </section>
