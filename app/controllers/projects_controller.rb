@@ -10,10 +10,19 @@ class ProjectsController < ApplicationController
         render json: find_project
     end
 
+    def create
+        project = Project.create!(project_params)
+        render json: project, status: :created
+    end
+
     private
 
     def find_project
         Project.find(params[:id])
+    end
+
+    def project_params
+        params.permit(:id, :title, :description, :skills)
     end
 
 end

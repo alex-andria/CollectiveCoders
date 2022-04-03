@@ -13,16 +13,6 @@ function MentorUserHome({ mentorUser, onAddProject }) {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-  //   //Modal Variables
-  //   // Get the modal
-  //   let modal = document.getElementById("myModal");
-
-  //   // Get the button that opens the modal
-  //   let btn = document.getElementById("myBtn");
-
-  //   // Get the <span> element that closes the modal
-  //   let span = document.getElementsByClassName("close")[0];
-
   return (
     <>
       <h1>Current Projects</h1>

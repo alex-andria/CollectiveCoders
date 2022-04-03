@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/esm/Button";
 
-function NewProject({ mentorId, onAddProject, handleClose }) {
+function NewProject({ onAddProject, handleClose }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [skills, setSkills] = useState("");
@@ -31,6 +31,7 @@ function NewProject({ mentorId, onAddProject, handleClose }) {
           setSkills("");
           setErrors([]);
           onAddProject(project);
+          handleClose();
         });
       } else {
         r.json().then((err) => setErrors(err.errors));
@@ -76,7 +77,7 @@ function NewProject({ mentorId, onAddProject, handleClose }) {
       ))}
       {/* submit button */}
       <hr />
-      <Button variant="primary" type="submit" onClick={handleClose} style={{float: "right"}}>
+      <Button variant="primary" type="submit" style={{float: "right"}}>
         Submit
       </Button>
       <Button variant="secondary" onClick={handleClose} style={{float: "right", marginRight: "10px"}}>
