@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-// import {Error} from "../styles/"
+import Error from "../styles/Error";
 
 function LoginForm({ onLogin }) {
   const [emailAddress, setEmailAddress] = useState("");
@@ -64,10 +64,9 @@ function LoginForm({ onLogin }) {
 
         <div className="container">
           <h3>
-            {/* {errors.map((err) => (
-              <p key={err}>{err}</p>
-            ))} */}
-            {console.log(errors)}
+          {errors.map((err) => (
+            <Error key={err}>{err}</Error>
+          ))}
           </h3>
         </div>
   
