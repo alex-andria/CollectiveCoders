@@ -2,8 +2,8 @@ import React, {useState, useEffect} from 'react';
 import {Switch, Route, Redirect } from 'react-router-dom';
 import { Navbar } from './app/Navbar';
 import HomeAnonymous from './features/HomeAnonymous';
-import LoginForm from './features/LoginForm';
-import SignupForm from './features/SignupForm';
+// import LoginForm from './features/LoginForm';
+// import SignupForm from './features/SignupForm';
 import Mentors from './features/mentors/Mentors';
 import Mentees from './features/mentees/Mentees';
 import MentorInfo from './features/mentors/MentorInfo';
@@ -15,8 +15,6 @@ import MentorUserHome from './features/mentors/MentorUserHome';
 
 function App() {
 
-  const [userMentor, setUserMentor] = useState(null); //user log-in mentor
-  const [userMentee, setUserMentee] = useState(null); //user log-in mentee
   const [mentorData, setMentorData] = useState(null); //mentor individual data
   const [mentors, setMentors] = useState([]);         //mentors list
   const [menteeData, setMenteeData] = useState(null); //mentee individual data
@@ -25,7 +23,7 @@ function App() {
   const [projects, setProjects] = useState([]);         //projects list
 
   // user auth
-  const [mentorUser, setMentorUser] = useState(null);
+  const [mentorUser, setMentorUser] = useState(null); //user log-in mentor
 
   useEffect(() => {
     //auto-login
@@ -55,6 +53,10 @@ function App() {
       .then((r) => r.json())
       .then(setProjects);
   }, []);
+
+  function handleAddProject(NewProject) {
+    setProjects((projects) => [...projects, NewProject]);
+  }
 
   if (!mentorUser) return <HomeAnonymous onLogin={setMentorUser} />;
   
@@ -92,7 +94,7 @@ function App() {
 
             {/* homepage user */}
             <Route exact path="/">
-              <MentorUserHome mentorUser={mentorUser}/>
+              <MentorUserHome mentorUser={mentorUser} onAddProject={handleAddProject}/>
             </Route>
             
 

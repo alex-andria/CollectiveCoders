@@ -2,47 +2,26 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import NewProject from "../projects/NewProject";
+import Modal from 'react-bootstrap/Modal';
+import Button from 'react-bootstrap/Button';
+import "bootstrap/dist/css/bootstrap.min.css";
 
-function MentorUserHome({ mentorUser }) {
-  // const [{ data: mentor, error, status }, setMentor] = useState({
-  //     data: null,
-  //     error: null,
-  //     status: "pending",
-  //   });
+function MentorUserHome({ mentorUser, onAddProject }) {
+  const [show, setShow] = useState(false);
 
-  //   const { id } = useParams();
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
-  // useEffect(() => {
-  //     fetch(`/mentors/projects/${id}`).then((r) => {
-  //       if (r.ok) {
-  //         r.json().then((camper) =>
-  //           setCamper({ data: camper, error: null, status: "resolved" })
-  //         );
-  //       } else {
-  //         r.json().then((err) =>
-  //           setCamper({ data: null, error: err.error, status: "rejected" })
-  //         );
-  //       }
-  //     });
-  //   }, [id]);
-  // const [mentorUserProjects, setMentorUserProjects] = useState(null);
-  // const { id } = useParams();
+  //   //Modal Variables
+  //   // Get the modal
+  //   let modal = document.getElementById("myModal");
 
-  // useEffect(() => {
-  //     fetch(`/mentors/projects/${mentorUser.id}`)
-  //     .then(response => response.json())
-  //     .then((data) => setMentorUserProjects(data))
-  //     }, []);
+  //   // Get the button that opens the modal
+  //   let btn = document.getElementById("myBtn");
 
-  //Modal Variables
-  // Get the modal
-  let modal = document.getElementById("myModal");
-
-  // Get the button that opens the modal
-  let btn = document.getElementById("myBtn");
-
-  // Get the <span> element that closes the modal
-  let span = document.getElementsByClassName("close")[0];
+  //   // Get the <span> element that closes the modal
+  //   let span = document.getElementsByClassName("close")[0];
 
   return (
     <>
@@ -56,70 +35,23 @@ function MentorUserHome({ mentorUser }) {
                 <li key={project.id}>{project.title}</li>
               ))}
             </ul>
-
-            {/* create project */}
-            <button
-              id="myBtn"
-              onClick={() => {
-                modal.style.display = "block";
-              }}
-            >
-              Create New Project
-            </button>
-            {/* <!-- The Modal --> */}
-            <div id="myModal" className="modal">
-              {/* <!-- Modal content --> */}
-              <div className="modal-content">
-                <span
-                  className="close"
-                  onClick={() => {
-                    modal.style.display = "none";
-                  }}
-                >
-                  &times;
-                </span>
-                <p>Some text in the Modal..</p>
-              </div>
-              {window.addEventListener("click", (e) => {
-                if (e.target == modal) {
-                  modal.style.display = "none";
-                }
-              })}
-            </div>
           </>
         ) : (
           <>
             <p>No Projects</p>
 
-            {/* create project */}
-            <button
-              id="myBtn"
-              onClick={() => {
-                modal.style.display = "block";
-              }}
-            >
-              Create New Project
-            </button>
-            {/* <!-- The Modal --> */}
-            <div id="myModal" className="modal">
-              {/* <!-- Modal content --> */}
-              <div className="modal-content">
-                <span
-                  className="close"
-                  onClick={() => {
-                    modal.style.display = "none";
-                  }}
-                >
-                  &times;
-                </span>
-                <p>Some text in the Modal..</p>
-              </div>
-              {window.addEventListener("click", (e) => {
-                if (e.target == modal) {
-                  modal.style.display = "none";
-                }
-              })}
-            </div>
+            <Button variant="primary" onClick={handleShow}>
+              Launch demo modal
+            </Button>
+
+            <Modal show={show} onHide={handleClose}>
+              <Modal.Header closeButton>
+                <Modal.Title>Create New Project</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                <NewProject onAddProject={onAddProject} mentorUser={mentorUser} handleClose={handleClose} />
+              </Modal.Body>
+            </Modal>
           </>
         )}
       </div>
