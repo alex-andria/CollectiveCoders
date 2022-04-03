@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
 
 function NewProject({ mentorId, onAddProject, handleClose }) {
@@ -8,7 +7,6 @@ function NewProject({ mentorId, onAddProject, handleClose }) {
   const [skills, setSkills] = useState("");
   const [errors, setErrors] = useState([]);
 
-  const history = useHistory();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -28,8 +26,6 @@ function NewProject({ mentorId, onAddProject, handleClose }) {
     }).then((r) => {
       if (r.ok) {
         r.json().then((project) => {
-          handleClose();
-          history.push("/");
           setTitle("");
           setDescription("");
           setSkills("");

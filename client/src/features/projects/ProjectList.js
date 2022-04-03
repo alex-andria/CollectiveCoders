@@ -20,24 +20,23 @@ function ProjectList({ projects, setProjectData }) {
           key={project.id}
         >
           <div
-            class="flip-container"
-            ontouchstart="this.classList.toggle('hover');"
+            className="flip-container"
           >
-            <div class="flipper">
-              <div class="front">
+            <div className="flipper">
+              <div className="front">
                 {/* <!-- front content --> */}
                 <img
                   src="https://picsum.photos/270/180/?random"
                   alt="Image alt text"
                 />
-                <div class="block-content">
+                <div className="block-content">
                   <h3>4 Oct 2015</h3>
-                  <h2>Art for all lorem ipsum very long title</h2>
-                  <div class="tag">Exhibition</div>
-                  <div class="tag">Kids &amp; families</div>
+                  <h2>{project.title}</h2>
+                  <div className="tag">Exhibition</div>
+                  <div className="tag">Kids &amp; families</div>
                 </div>
               </div>
-              <div class="back">
+              <div className="back">
                 {/* <!-- back content --> */}
                 <h3>In short</h3>
                 <p>
@@ -45,7 +44,7 @@ function ProjectList({ projects, setProjectData }) {
                   for kids. With guidance from some of the worlds most renowned
                   modern artists...
                 </p>
-                <a class="button" href="#">
+                <a className="button" href="#">
                   Find out more
                 </a>
               </div>
