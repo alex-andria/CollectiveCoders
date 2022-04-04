@@ -58,6 +58,17 @@ function App() {
     setProjects((projects) => [...projects, NewProject]);
   }
 
+  // function handleAddMentorProject(newMentorProject) {
+  //   setMentorUser({
+  //     // error,
+  //     // status,
+  //     data: {
+  //       ...mentorUser,
+  //       projects: [...mentorUser.projects, newMentorProject],
+  //     },
+  //   });
+  // }
+
   if (!mentorUser) return <HomeAnonymous onLogin={setMentorUser} />;
   
   return (
@@ -94,7 +105,11 @@ function App() {
 
             {/* homepage user */}
             <Route exact path="/">
-              <MentorUserHome mentorUser={mentorUser} onAddProject={handleAddProject}/>
+              <MentorUserHome 
+                mentorUser={mentorUser} 
+                onAddProject={handleAddProject}
+                // handleAddMentorProject={handleAddMentorProject}
+                />
             </Route>
             
 

@@ -9,19 +9,42 @@ import "bootstrap/dist/css/bootstrap.min.css";
 
 function MentorUserHome({ mentorUser, onAddProject }) {
   const [show, setShow] = useState(false);
+  const [mentorProjects, setMentorProjects] = useState([]);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
+  useEffect(() => {
+    fetch(`/mentors/projects/${mentorUser.id}`)
+      .then((r) => r.json())
+      .then(setMentorProjects);
+  }, []);
+
+  function handleAddMentorProject(newMentorProject) {
+    setMentorProjects({
+      // error,
+      // status,
+      data: {
+        ...mentorProjects,
+        projects: [...mentorProjects.projects, newMentorProject],
+      },
+    });
+  }
+
+// 
+
+  console.log(mentorProjects);
+  console.log(mentorProjects.projects);
+  
   return (
     <>
       <h1>Current Projects</h1>
       <div>
         Horizontal Project Info Here. Plus create new project.
-
-        {mentorUser.projects ? (
+        
+        {mentorProjects.projects ? (
             <ul>
-              {mentorUser.projects.map((project) => (
+              {mentorProjects.projects.map((project) => (
                 <li key={project.id}>{project.title}</li>
               ))}
             </ul>
@@ -41,6 +64,7 @@ function MentorUserHome({ mentorUser, onAddProject }) {
               onAddProject={onAddProject}
               mentorUser={mentorUser}
               handleClose={handleClose}
+              handleAddMentorProject={handleAddMentorProject}
             />
           </Modal.Body>
         </Modal>

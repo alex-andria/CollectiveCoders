@@ -1,17 +1,19 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
 
-function NewProject({ onAddProject, handleClose }) {
+function NewProject({ mentorUser, onAddProject, handleClose, handleAddMentorProject }) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [skills, setSkills] = useState("");
   const [errors, setErrors] = useState([]);
 
+  const history = useHistory();
 
   function handleSubmit(e) {
     e.preventDefault();
 
-    const formData = {
+    const projectFormData = {
       title: title,
       description: description,
       skills: skills,
@@ -22,7 +24,7 @@ function NewProject({ onAddProject, handleClose }) {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(projectFormData),
     }).then((r) => {
       if (r.ok) {
         r.json().then((project) => {
@@ -32,11 +34,59 @@ function NewProject({ onAddProject, handleClose }) {
           setErrors([]);
           onAddProject(project);
           handleClose();
+
+          //create mentor_project join table data
+          const mentorProjectData = {
+            mentor_id: mentorUser.id,
+            project_id: project.id,
+          };
+
+          fetch("/mentor_projects", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(mentorProjectData),
+          }).then((r) => {
+            if (r.ok) {
+              r.json().then((mentorProject) => {
+                // setErrors([]);
+                handleAddMentorProject(mentorProject);
+                history.push("/");
+              });
+            } else {
+              r.json().then((err) => setErrors(err.errors));
+            }
+          });
+
         });
       } else {
         r.json().then((err) => setErrors(err.errors));
       }
     });
+
+    // const mentorProjectData = {
+    //   mentor_id: mentorUser.id,
+    //   project_id: project.id,
+    // };
+
+    // fetch("/mentor_projects", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(mentorProjectData),
+    // }).then((r) => {
+    //   if (r.ok) {
+    //     r.json().then((mentorProject) => {
+    //       // setErrors([]);
+    //       handleAddMentorProject(mentorProject);
+    //     });
+    //   } else {
+    //     r.json().then((err) => setErrors(err.errors));
+    //   }
+    // });
+
   }
 
   return (
