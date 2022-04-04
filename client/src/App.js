@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import {Switch, Route, Redirect } from 'react-router-dom';
 import { Navbar } from './app/Navbar';
+import { useHistory } from 'react-router-dom';
 import HomeAnonymous from './features/HomeAnonymous';
 // import LoginForm from './features/LoginForm';
 // import SignupForm from './features/SignupForm';
@@ -24,6 +25,9 @@ function App() {
 
   // user auth
   const [mentorUser, setMentorUser] = useState(null); //user log-in mentor
+
+  //useHistory
+  const history = useHistory();
 
   useEffect(() => {
     //auto-login
@@ -56,6 +60,19 @@ function App() {
 
   function handleAddProject(NewProject) {
     setProjects((projects) => [...projects, NewProject]);
+  }
+
+  function handleDeleteProject(id) {
+
+    fetch(`/projects/${id}`, {
+      method: "DELETE",
+    }).then((r) => {
+      if (r.ok) {
+        setProjects((projects) =>
+         projects.filter((project) => project.id !== id)
+        );
+      }
+    });
   }
 
   // function handleAddMentorProject(newMentorProject) {
@@ -108,6 +125,7 @@ function App() {
               <MentorUserHome 
                 mentorUser={mentorUser} 
                 onAddProject={handleAddProject}
+                onDeleteProject={handleDeleteProject}
                 // handleAddMentorProject={handleAddMentorProject}
                 />
             </Route>

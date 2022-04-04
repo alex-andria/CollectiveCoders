@@ -6,10 +6,12 @@ import NewProject from "../projects/NewProject";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useHistory } from "react-router-dom";
 
-function MentorUserHome({ mentorUser, onAddProject }) {
+function MentorUserHome({ mentorUser, onAddProject, onDeleteProject }) {
   const [show, setShow] = useState(false);
   const [mentorProjects, setMentorProjects] = useState([]);
+  //   const history = useHistory();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -17,41 +19,41 @@ function MentorUserHome({ mentorUser, onAddProject }) {
   useEffect(() => {
     fetch(`/mentors/projects/${mentorUser.id}`)
       .then((r) => r.json())
-      .then(setMentorProjects);
+      .then((mentorProjects) => {
+        setMentorProjects(mentorProjects);
+        //   history.push("/")
+      });
   }, []);
 
   function handleAddMentorProject(newMentorProject) {
     setMentorProjects({
-      // error,
-      // status,
-      data: {
-        ...mentorProjects,
-        projects: [...mentorProjects.projects, newMentorProject],
-      },
+      ...mentorProjects,
+      projects: [...mentorProjects.projects, newMentorProject],
     });
   }
 
-// 
+  //   console.log(mentorProjects);
+  //   console.log(mentorProjects.projects);
 
-  console.log(mentorProjects);
-  console.log(mentorProjects.projects);
-  
   return (
     <>
       <h1>Current Projects</h1>
       <div>
         Horizontal Project Info Here. Plus create new project.
-        
         {mentorProjects.projects ? (
-            <ul>
-              {mentorProjects.projects.map((project) => (
-                <li key={project.id}>{project.title}</li>
-              ))}
-            </ul>
+          <ul>
+            {mentorProjects.projects.map((project) => (
+                <li key={project.id}>
+                  <span>{project.title}</span>
+                  <button onClick={() => onDeleteProject(project.id)}>
+                    delete
+                  </button>
+                </li>
+            ))}
+          </ul>
         ) : (
           <p>No Projects</p>
         )}
-
         <Button variant="primary" onClick={handleShow}>
           Create New Project
         </Button>
@@ -71,7 +73,7 @@ function MentorUserHome({ mentorUser, onAddProject }) {
       </div>
 
       <h1>Mentees</h1>
-      <div>Mentee List From Projects Here.</div>
+      <div>Mentee List Coming Soon</div>
     </>
   );
 }

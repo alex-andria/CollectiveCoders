@@ -15,6 +15,12 @@ class ProjectsController < ApplicationController
         render json: project, status: :created
     end
 
+    def destroy
+        project = find_project
+        project.destroy
+        head :no_content
+    end
+
     private
 
     def find_project

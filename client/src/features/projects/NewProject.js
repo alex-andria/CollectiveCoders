@@ -2,13 +2,18 @@ import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import Button from "react-bootstrap/esm/Button";
 
-function NewProject({ mentorUser, onAddProject, handleClose, handleAddMentorProject }) {
+function NewProject({
+  mentorUser,
+  onAddProject,
+  handleClose,
+  handleAddMentorProject,
+}) {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [skills, setSkills] = useState("");
   const [errors, setErrors] = useState([]);
 
-  const history = useHistory();
+  // const history = useHistory();
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -52,13 +57,12 @@ function NewProject({ mentorUser, onAddProject, handleClose, handleAddMentorProj
               r.json().then((mentorProject) => {
                 // setErrors([]);
                 handleAddMentorProject(mentorProject);
-                history.push("/");
+                // history.push("/");
               });
             } else {
               r.json().then((err) => setErrors(err.errors));
             }
           });
-
         });
       } else {
         r.json().then((err) => setErrors(err.errors));
@@ -86,7 +90,6 @@ function NewProject({ mentorUser, onAddProject, handleClose, handleAddMentorProj
     //     r.json().then((err) => setErrors(err.errors));
     //   }
     // });
-
   }
 
   return (
@@ -127,10 +130,14 @@ function NewProject({ mentorUser, onAddProject, handleClose, handleAddMentorProj
       ))}
       {/* submit button */}
       <hr />
-      <Button variant="primary" type="submit" style={{float: "right"}}>
+      <Button variant="primary" type="submit" style={{ float: "right" }}>
         Submit
       </Button>
-      <Button variant="secondary" onClick={handleClose} style={{float: "right", marginRight: "10px"}}>
+      <Button
+        variant="secondary"
+        onClick={handleClose}
+        style={{ float: "right", marginRight: "10px" }}
+      >
         Close
       </Button>
     </form>
